@@ -4,8 +4,7 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import * as React from "react";
 import { cn } from "../../../utils/cn";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -27,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           background: useMotionTemplate`
         radial-gradient(
           ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-          var(--purple-500),
+          rgba(249, 115, 22, 0.4),
           transparent 80%
         )
       `,
@@ -35,26 +34,26 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
-        className="p-[2px] rounded-lg transition duration-300 group/input"
+        className="p-[2px] rounded-xl transition duration-300 group/input"
       >
         <input
           type={type}
           className={cn(
-            `flex h-10 w-full border-none border-slate-300 dark:border-slate-50 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
+            `flex h-10 w-full border border-white/20 dark:border-slate-600/50 bg-white/50 dark:bg-slate-900/50 backdrop-blur-lg text-black dark:text-white shadow-input rounded-xl px-4 py-2 text-sm file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
-          focus-visible:outline-none focus-visible:ring-[2px]  focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
+          focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-orange-500/50 dark:focus-visible:ring-orange-400/50
            disabled:cursor-not-allowed disabled:opacity-50
            dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
            group-hover/input:shadow-none transition duration-400
            `,
-            className
+            className,
           )}
           ref={ref}
           {...props}
         />
       </motion.div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

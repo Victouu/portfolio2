@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 //composants
@@ -16,6 +17,11 @@ import reactLogo from "../../../public/react.svg";
 import typescriptLogo from "../../../public/typescript.svg";
 
 import Head from "../components/head";
+import {
+  AnimatedSection,
+  GlassCard,
+  HoverCard,
+} from "../components/animations";
 
 // Données des expériences
 const experiences = [
@@ -54,152 +60,184 @@ function About() {
         <div className="flex items-center pt-5">
           <div className="md:max-w-2/3 mb-20 flex w-full flex-col items-center space-y-4 text-sm md:space-y-11 md:pb-0 md:text-lg">
             {/* Section Me connaître */}
-            <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
-              Me connaitre
-            </h2>
-            <div className="flex flex-col space-y-4 leading-relaxed md:flex-row md:space-x-12 md:space-y-0">
-              <p className="w-full whitespace-pre-line text-lg">
-                J&apos;ai 20 ans et je suis diplômé d&apos;un BAC STI2D option
-                SIN. Actuellement en 3ème année de BUT Informatique à l&apos;IUT
-                de Lannion, je suis en alternance chez Orange en tant que DevOps
-                Developer.
-                <br />
-                <br />
-                Passionné par l&apos;automatisation des infrastructures et les
-                réseaux 5G, je combine développement logiciel et administration
-                système pour fiabiliser les déploiements.
-                <br />
-                <br />À côté de mes études, je suis passionné par la musique, le
-                sport, les jeux vidéos et le cinéma.
-              </p>
-            </div>
-
-            {/* Section Expériences */}
-            <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
-              Expériences
-            </h2>
-            <div className="w-full space-y-6">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className="relative pl-8 pb-6 border-l-2 border-slate-300 dark:border-slate-600 last:pb-0"
-                >
-                  <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-orange-500 dark:bg-orange-400" />
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                    <div>
-                      <h3 className="text-lg font-semibold">{exp.role}</h3>
-                      <p className="text-orange-600 dark:text-orange-400">
-                        {exp.company} — {exp.location}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 mt-1 sm:mt-0">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {exp.date}
-                      </span>
-                      <span className="px-2 py-1 text-xs rounded-full bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">
-                        {exp.type}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {exp.description}
+            <AnimatedSection delay={0.1}>
+              <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
+                Me connaitre
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <GlassCard className="p-6 rounded-2xl">
+                <div className="flex flex-col space-y-4 leading-relaxed md:flex-row md:space-x-12 md:space-y-0">
+                  <p className="w-full whitespace-pre-line text-lg">
+                    J&apos;ai 20 ans et je suis diplômé d&apos;un BAC STI2D
+                    option SIN. Actuellement en 3ème année de BUT Informatique à
+                    l&apos;IUT de Lannion, je suis en alternance chez Orange en
+                    tant que DevOps Developer.
+                    <br />
+                    <br />
+                    Passionné par l&apos;automatisation des infrastructures et
+                    les réseaux 5G, je combine développement logiciel et
+                    administration système pour fiabiliser les déploiements.
+                    <br />
+                    <br />À côté de mes études, je suis passionné par la
+                    musique, le sport, les jeux vidéos et le cinéma.
                   </p>
                 </div>
+              </GlassCard>
+            </AnimatedSection>
+
+            {/* Section Expériences */}
+            <AnimatedSection delay={0.3}>
+              <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
+                Expériences
+              </h2>
+            </AnimatedSection>
+            <div className="w-full space-y-6">
+              {experiences.map((exp, index) => (
+                <AnimatedSection key={index} delay={0.4 + index * 0.1}>
+                  <HoverCard>
+                    <div className="relative pl-8 pb-6 border-l-2 border-slate-300/50 dark:border-slate-600/50 last:pb-0">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          delay: 0.5 + index * 0.1,
+                          type: "spring",
+                        }}
+                        className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/30"
+                      />
+                      <GlassCard className="p-4 rounded-xl ml-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                          <div>
+                            <h3 className="text-lg font-semibold">
+                              {exp.role}
+                            </h3>
+                            <p className="text-orange-600 dark:text-orange-400">
+                              {exp.company} — {exp.location}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 mt-1 sm:mt-0">
+                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                              {exp.date}
+                            </span>
+                            <span className="px-2 py-1 text-xs rounded-full bg-orange-100/80 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 backdrop-blur-sm">
+                              {exp.type}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {exp.description}
+                        </p>
+                      </GlassCard>
+                    </div>
+                  </HoverCard>
+                </AnimatedSection>
               ))}
             </div>
 
             {/* Section Compétences */}
-            <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
-              Mes compétences
-            </h2>
-            <div className="mb-12 max-w-[58rem] scroll-mt-28 text-center">
-              <ul className="flex flex-wrap justify-center gap-2 text-lg">
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={pythonLogo} alt="python" width={50} height={50} />
-                  <span className="mt-2">Python</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={dockerLogo} alt="docker" width={50} height={50} />
-                  <span className="mt-2">Docker</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={gitLogo} alt="git" width={50} height={50} />
-                  <span className="mt-2">Git</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <div className="flex items-center justify-center w-[50px] h-[50px] bg-slate-700 dark:bg-slate-200 rounded-lg">
-                    <span className="text-white dark:text-black font-mono text-xl">
-                      $
-                    </span>
-                  </div>
-                  <span className="mt-2">Bash</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <div className="flex items-center justify-center w-[50px] h-[50px] bg-orange-500 rounded-lg">
-                    <span className="text-white font-bold text-sm">CI/CD</span>
-                  </div>
-                  <span className="mt-2">CI/CD</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image
-                    src={postgreLogo}
-                    alt="postgresql"
-                    width={50}
-                    height={50}
-                  />
-                  <span className="mt-2">PostgreSQL</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={reactLogo} alt="react" width={50} height={50} />
-                  <span className="mt-2">React</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <div className="bg-slate-50 rounded-full">
-                    <Image src={nextLogo} alt="next" width={50} height={50} />
-                  </div>
-                  <span className="mt-2">NextJS</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image
-                    src={typescriptLogo}
-                    alt="typescript"
-                    width={50}
-                    height={50}
-                  />
-                  <span className="mt-2">TypeScript</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={phpLogo} alt="php" width={50} height={50} />
-                  <span className="mt-2">PHP</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={cLogo} alt="c" width={50} height={50} />
-                  <span className="mt-2">C</span>
-                </li>
-                <li className="flex flex-col items-center px-4 py-3 hover:scale-105 duration-100">
-                  <Image src={javaLogo} alt="java" width={50} height={50} />
-                  <span className="mt-2">Java</span>
-                </li>
-              </ul>
-            </div>
+            <AnimatedSection delay={0.5}>
+              <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
+                Mes compétences
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.6}>
+              <GlassCard className="p-6 rounded-2xl mb-12 max-w-[58rem] scroll-mt-28">
+                <ul className="flex flex-wrap justify-center gap-2 text-lg">
+                  {[
+                    { logo: pythonLogo, name: "Python" },
+                    { logo: dockerLogo, name: "Docker" },
+                    { logo: gitLogo, name: "Git" },
+                    { name: "Bash", custom: true, icon: "$" },
+                    { name: "CI/CD", custom: true, customBg: true },
+                    { logo: postgreLogo, name: "PostgreSQL" },
+                    { logo: reactLogo, name: "React" },
+                    { logo: nextLogo, name: "NextJS", rounded: true },
+                    { logo: typescriptLogo, name: "TypeScript" },
+                    { logo: phpLogo, name: "PHP" },
+                    { logo: cLogo, name: "C" },
+                    { logo: javaLogo, name: "Java" },
+                  ].map((skill, index) => (
+                    <motion.li
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.7 + index * 0.05 }}
+                      whileHover={{ scale: 1.1, y: -5 }}
+                      className="flex flex-col items-center px-4 py-3 cursor-default"
+                    >
+                      {skill.custom ? (
+                        skill.customBg ? (
+                          <div className="flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg shadow-orange-500/30">
+                            <span className="text-white font-bold text-sm">
+                              CI/CD
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center w-[50px] h-[50px] bg-slate-700 dark:bg-slate-200 rounded-lg">
+                            <span className="text-white dark:text-black font-mono text-xl">
+                              {skill.icon}
+                            </span>
+                          </div>
+                        )
+                      ) : skill.rounded ? (
+                        <div className="bg-slate-50 rounded-full">
+                          <Image
+                            src={skill.logo!}
+                            alt={skill.name}
+                            width={50}
+                            height={50}
+                          />
+                        </div>
+                      ) : (
+                        <Image
+                          src={skill.logo!}
+                          alt={skill.name}
+                          width={50}
+                          height={50}
+                        />
+                      )}
+                      <span className="mt-2">{skill.name}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </GlassCard>
+            </AnimatedSection>
 
             {/* Section Objectif */}
-            <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
-              Mon objectif
-            </h2>
-            <div className="w-full p-6 rounded-lg bg-gradient-to-r from-orange-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 border border-slate-200 dark:border-slate-600 mb-20">
-              <div className="text-center space-y-3">
-                <p className="text-lg">
-                  <strong>Objectif post-diplôme :</strong> Insertion
-                  professionnelle
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Je recherche un poste de <strong>DevOps Junior</strong> ou{" "}
-                  <strong>Intégrateur Système</strong> à partir de Septembre
-                  2026.
-                </p>
-              </div>
-            </div>
+            <AnimatedSection delay={0.8}>
+              <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
+                Mon objectif
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.9} className="w-full mb-20">
+              <GlassCard className="p-6 rounded-2xl">
+                <div className="text-center space-y-3">
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="text-lg"
+                  >
+                    <strong className="gradient-text">
+                      Objectif post-diplôme :
+                    </strong>{" "}
+                    Insertion professionnelle
+                  </motion.p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Je recherche un poste de{" "}
+                    <strong className="text-orange-600 dark:text-orange-400">
+                      DevOps Junior
+                    </strong>{" "}
+                    ou{" "}
+                    <strong className="text-orange-600 dark:text-orange-400">
+                      Intégrateur Système
+                    </strong>{" "}
+                    à partir de Septembre 2026.
+                  </p>
+                </div>
+              </GlassCard>
+            </AnimatedSection>
           </div>
         </div>
       </div>
