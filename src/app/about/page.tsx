@@ -45,6 +45,46 @@ const experiences = [
   },
 ];
 
+// Compétences BUT Informatique
+const competencesBUT = [
+  {
+    id: "C1",
+    title: "Réaliser",
+    description: "Concevoir, coder, tester et maintenir des applications",
+    icon: "💻",
+  },
+  {
+    id: "C2",
+    title: "Optimiser",
+    description: "Améliorer les performances et la qualité des programmes",
+    icon: "⚡",
+  },
+  {
+    id: "C3",
+    title: "Administrer",
+    description: "Installer, configurer et maintenir systèmes et réseaux",
+    icon: "🖧",
+  },
+  {
+    id: "C4",
+    title: "Gérer",
+    description: "Modéliser, stocker et exploiter des données",
+    icon: "🗃️",
+  },
+  {
+    id: "C5",
+    title: "Conduire",
+    description: "Organiser et piloter un projet informatique",
+    icon: "📋",
+  },
+  {
+    id: "C6",
+    title: "Collaborer",
+    description: "Travailler en équipe et communiquer efficacement",
+    icon: "🤝",
+  },
+];
+
 function About() {
   const { theme, resolvedTheme } = useTheme();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -135,13 +175,47 @@ function About() {
               ))}
             </div>
 
-            {/* Section Compétences */}
+            {/* Section Compétences BUT */}
             <AnimatedSection delay={0.5}>
               <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
-                Mes compétences
+                Compétences BUT Informatique
               </h2>
             </AnimatedSection>
-            <AnimatedSection delay={0.6}>
+            <AnimatedSection delay={0.55}>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+                {competencesBUT.map((comp, index) => (
+                  <motion.div
+                    key={comp.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="group"
+                  >
+                    <GlassCard className="p-4 rounded-xl h-full flex flex-col items-center text-center hover:border-orange-500/50 transition-colors">
+                      <span className="text-3xl mb-2">{comp.icon}</span>
+                      <span className="text-xs text-orange-600 dark:text-orange-400 font-mono mb-1">
+                        {comp.id}
+                      </span>
+                      <h3 className="font-semibold text-lg mb-1">
+                        {comp.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {comp.description}
+                      </p>
+                    </GlassCard>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+
+            {/* Section Compétences Techniques */}
+            <AnimatedSection delay={0.7}>
+              <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left pt-8">
+                Compétences techniques
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.8}>
               <GlassCard className="p-6 rounded-2xl mb-12 max-w-[58rem] scroll-mt-28">
                 <ul className="flex flex-wrap justify-center gap-2 text-lg">
                   {[
@@ -150,6 +224,12 @@ function About() {
                     { logo: gitLogo, name: "Git" },
                     { name: "Bash", custom: true, icon: "$" },
                     { name: "CI/CD", custom: true, customBg: true },
+                    {
+                      name: "Réseaux",
+                      custom: true,
+                      customBg: true,
+                      customLabel: "5G",
+                    },
                     { logo: postgreLogo, name: "PostgreSQL" },
                     { logo: reactLogo, name: "React" },
                     { logo: nextLogo, name: "NextJS", rounded: true },
@@ -170,7 +250,7 @@ function About() {
                         skill.customBg ? (
                           <div className="flex items-center justify-center w-[50px] h-[50px] bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg shadow-orange-500/30">
                             <span className="text-white font-bold text-sm">
-                              CI/CD
+                              {skill.customLabel || skill.name}
                             </span>
                           </div>
                         ) : (

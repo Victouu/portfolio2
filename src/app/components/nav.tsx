@@ -55,19 +55,20 @@ export const Nav = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="absolute bottom-4 left-1/2 z-20 w-[90%] -translate-x-1/2 items-center rounded-[25px] bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-lg px-8 py-2 md:relative md:bottom-0 md:left-0 md:w-auto md:translate-x-0 md:bg-white/50 dark:md:bg-slate-800/50 md:rounded-full"
+      className="absolute bottom-4 left-1/2 z-20 w-[90%] -translate-x-1/2 rounded-[25px] bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-lg py-2 md:relative md:bottom-0 md:left-0 md:w-auto md:translate-x-0 md:bg-white/50 dark:md:bg-slate-800/50 md:rounded-full"
     >
-      <nav className="sticky">
-        <ul className="flex items-center justify-around space-x-6 md:justify-center md:space-x-14">
+      <nav>
+        <ul className="flex items-center justify-evenly px-4 md:justify-center md:gap-12 md:px-6">
           {navItems.map((item, index) => (
             <motion.li
               key={item.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+              className={item.mobileOnly ? "md:hidden" : ""}
             >
               <a
-                className={`group relative flex-col items-center justify-center text-base md:text-lg flex ${item.mobileOnly ? "md:hidden" : ""}`}
+                className="group relative flex-col items-center justify-center text-base md:text-lg flex text-center"
                 href={item.href}
               >
                 <motion.div

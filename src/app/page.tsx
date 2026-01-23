@@ -80,7 +80,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="text-lg md:text-xl font-light uppercase tracking-[0.3em] text-orange-600 dark:text-orange-400"
               >
-                DevOps Developer & Network Automation
+                Étudiant en informatique
               </motion.h2>
               <TextGenerateEffect words={words} />
             </AnimatedSection>
@@ -99,10 +99,8 @@ export default function Home() {
             <AnimatedSection delay={0.7}>
               <GlassCard className="p-6 rounded-2xl max-w-2xl">
                 <p className="text-center text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Passionné par l&apos;automatisation des infrastructures et les
-                  réseaux 5G. Je combine le développement logiciel et
-                  l&apos;administration système pour fiabiliser les
-                  déploiements.
+                  Curieux de nature, j&apos;aime comprendre comment les choses
+                  fonctionnent et les améliorer.
                 </p>
               </GlassCard>
             </AnimatedSection>

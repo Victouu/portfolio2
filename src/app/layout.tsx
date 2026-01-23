@@ -6,6 +6,7 @@ import { Provider } from "./providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnimatedBackground } from "./components/animated-background";
+import { CustomCursor } from "./components/custom-cursor";
 
 const space_Grotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className={`${space_Grotesk.className} bg-transparent`}>
         <Provider attribute="class" defaultTheme="light">
+          <CustomCursor />
           <AnimatedBackground />
           <main className="relative z-10">
             {children}
