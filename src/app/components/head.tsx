@@ -35,6 +35,7 @@ export default function Head() {
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.3 }}
+          className="w-[100px]"
         >
           <Image
             src={isDarkTheme ? logolight : logodark}
@@ -45,7 +46,9 @@ export default function Head() {
           />
         </motion.a>
         <Nav />
-        <ThemeSwitch />
+        <div className="w-[100px] flex justify-end">
+          <ThemeSwitch />
+        </div>
       </motion.div>
     </div>
   );

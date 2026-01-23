@@ -55,7 +55,7 @@ export const Nav = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="absolute bottom-4 left-1/2 z-20 w-[90%] -translate-x-1/2 rounded-[25px] bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-lg py-2 md:relative md:bottom-0 md:left-0 md:w-auto md:translate-x-0 md:bg-white/50 dark:md:bg-slate-800/50 md:rounded-full"
+      className="fixed bottom-4 left-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 rounded-[25px] bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-lg py-2 md:relative md:bottom-auto md:left-auto md:w-auto md:max-w-none md:translate-x-0 md:bg-white/50 dark:md:bg-slate-800/50 md:rounded-full md:z-20"
     >
       <nav>
         <ul className="flex items-center justify-evenly px-4 md:justify-center md:gap-12 md:px-6">
@@ -79,13 +79,14 @@ export const Nav = () => {
                   <Image
                     src={isDarkTheme ? item.iconDark : item.iconLight}
                     alt={item.label}
-                    width={17}
-                    height={17}
+                    width={24}
+                    height={24}
                   />
                 </motion.div>
+                <span className="text-xs md:hidden mt-1">{item.label}</span>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="hidden sm:block relative"
+                  className="hidden md:block relative"
                 >
                   {item.label}
                   <motion.span
