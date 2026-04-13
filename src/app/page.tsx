@@ -1,10 +1,9 @@
 "use client";
-import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import imgProfil from "../app/photo/111.jpg";
 
 import Head from "./components/head";
 import { TextGenerateEffect } from "./components/text-reveal";
@@ -19,14 +18,8 @@ import {
 const words = `Victor Roué`;
 
 export default function Home() {
-  const { theme, resolvedTheme } = useTheme();
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setIsDarkTheme(resolvedTheme === "dark");
-  }, [resolvedTheme]);
 
   // Animation GSAP pour l'effet glow de la photo
   useEffect(() => {
@@ -43,11 +36,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center">
-      <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-7xl">
+    <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
+      <div className="flex min-h-[calc(100svh-7rem)] w-[90%] max-w-[90%] flex-col md:min-h-screen md:max-w-7xl">
         <Head />
-        <div className="flex w-full flex-1 items-center justify-center">
-          <div className="flex w-full flex-col items-center space-y-8 md:space-y-12 z-10">
+        <div className="flex w-full flex-1 items-center justify-center py-8 md:py-0">
+          <div className="flex w-full flex-col items-center space-y-6 md:space-y-12 z-10">
             {/* Photo de profil avec animation */}
             <AnimatedSection delay={0.2}>
               <div ref={profileRef} className="relative">
@@ -62,10 +55,11 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <Image
-                    src={imgProfil}
+                    src="/profile.jpg"
                     alt="Victor Roué - DevOps Developer"
                     width={250}
                     height={250}
+                    priority
                     className="relative rounded-full h-44 w-44 md:w-56 md:h-56 object-cover border-4 border-white/80 dark:border-slate-800/80 shadow-2xl backdrop-blur-sm"
                   />
                 </motion.div>
@@ -111,7 +105,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <HoverCard>
-                <a
+                <Link
                   href="/projets"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
                 >
@@ -129,15 +123,15 @@ export default function Home() {
                       d="M14 5l7 7m0 0l-7 7m7-7H3"
                     />
                   </svg>
-                </a>
+                </Link>
               </HoverCard>
               <HoverCard>
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border-2 border-slate-200/50 dark:border-slate-600/50 hover:border-orange-500 dark:hover:border-orange-400 text-gray-700 dark:text-gray-300 font-semibold rounded-xl transition-all duration-300"
                 >
                   Me contacter
-                </a>
+                </Link>
               </HoverCard>
             </AnimatedSection>
 

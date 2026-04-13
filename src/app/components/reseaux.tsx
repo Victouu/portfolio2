@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export const Reseaux = () => {
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {

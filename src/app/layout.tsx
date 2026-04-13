@@ -31,7 +31,7 @@ export default function RootLayout({
           <SmoothScroll>
             <CustomCursor />
             <AnimatedBackground />
-            <main className="relative z-10">
+            <main className="relative z-10 pb-28 md:pb-0">
               {children}
               <SpeedInsights />
               <Analytics />

@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ValidationError, useForm } from "@formspree/react";
 import Head from "../components/head";
 import { Input } from "../components/input";
@@ -11,16 +11,12 @@ import {
 
 function Contact() {
   const [state, handleSubmit] = useForm("xnqerdbw");
-  if (state.succeeded) {
-    alert(
-      "Merci pour votre message, je vous répondrai dans les plus brefs délais.",
-    );
-  }
+
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center">
+    <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
       <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-7xl">
         <Head />
-        <div className="mb-20 flex w-full flex-col space-y-8 pt-5">
+        <div className="mb-10 flex w-full flex-col space-y-6 pt-5 md:space-y-8">
           {/* Titre */}
           <AnimatedSection delay={0.1}>
             <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
@@ -171,83 +167,152 @@ function Contact() {
               {/* Formulaire */}
               <AnimatedSection delay={0.4} direction="right">
                 <GlassCard className="p-6 rounded-2xl">
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium" htmlFor="name">
-                        Nom
-                      </label>
-                      <Input
-                        id="name"
-                        placeholder="Votre nom"
-                        type="text"
-                        name="name"
-                      />
-                      <ValidationError
-                        prefix="Name"
-                        field="name"
-                        errors={state.errors}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium" htmlFor="email">
-                        Email
-                      </label>
-                      <Input
-                        id="mail"
-                        placeholder="votre@email.com"
-                        type="email"
-                        name="mail"
-                      />
-                      <ValidationError
-                        prefix="Email"
-                        field="email"
-                        errors={state.errors}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium" htmlFor="subject">
-                        Sujet
-                      </label>
-                      <Input
-                        id="subject"
-                        placeholder="Sujet de votre message"
-                        type="text"
-                        name="subject"
-                      />
-                      <ValidationError
-                        prefix="Subject"
-                        field="subject"
-                        errors={state.errors}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium" htmlFor="message">
-                        Message
-                      </label>
-                      <textarea
-                        className="flex w-full border border-white/20 dark:border-slate-600/50 bg-white/50 dark:bg-slate-900/50 backdrop-blur-lg text-black dark:text-white rounded-xl px-4 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all min-h-[150px] resize-none"
-                        id="message"
-                        placeholder="Votre message..."
-                        name="message"
-                      ></textarea>
-                      <ValidationError
-                        prefix="Message"
-                        field="message"
-                        errors={state.errors}
-                      />
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed"
-                      type="submit"
-                      disabled={state.submitting}
-                    >
-                      {state.submitting
-                        ? "Envoi en cours..."
-                        : "Envoyer le message"}
-                    </motion.button>
-                  </form>
+                  <AnimatePresence mode="wait">
+                    {state.succeeded ? (
+                      <motion.div
+                        key="success"
+                        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
+                        className="flex flex-col items-center text-center py-8 space-y-4"
+                      >
+                        <motion.div
+                          initial={{ scale: 0, rotate: -180 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{
+                            delay: 0.15,
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 18,
+                          }}
+                          className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-600 shadow-lg shadow-green-500/30"
+                        >
+                          <svg
+                            className="w-8 h-8 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </motion.div>
+                        <div className="space-y-2">
+                          <h4 className="text-xl font-bold text-gray-900 dark:text-white">
+                            Message envoyé !
+                          </h4>
+                          <p className="text-gray-600 dark:text-gray-300 max-w-sm">
+                            Merci pour votre message. Je vous répondrai dans
+                            les plus brefs délais.
+                          </p>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.form
+                        key="form"
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="space-y-4"
+                        onSubmit={handleSubmit}
+                      >
+                        <div className="space-y-2">
+                          <label
+                            className="text-sm font-medium"
+                            htmlFor="name"
+                          >
+                            Nom
+                          </label>
+                          <Input
+                            id="name"
+                            placeholder="Votre nom"
+                            type="text"
+                            name="name"
+                          />
+                          <ValidationError
+                            prefix="Name"
+                            field="name"
+                            errors={state.errors}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            className="text-sm font-medium"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <Input
+                            id="mail"
+                            placeholder="votre@email.com"
+                            type="email"
+                            name="mail"
+                          />
+                          <ValidationError
+                            prefix="Email"
+                            field="email"
+                            errors={state.errors}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            className="text-sm font-medium"
+                            htmlFor="subject"
+                          >
+                            Sujet
+                          </label>
+                          <Input
+                            id="subject"
+                            placeholder="Sujet de votre message"
+                            type="text"
+                            name="subject"
+                          />
+                          <ValidationError
+                            prefix="Subject"
+                            field="subject"
+                            errors={state.errors}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            className="text-sm font-medium"
+                            htmlFor="message"
+                          >
+                            Message
+                          </label>
+                          <textarea
+                            className="flex w-full border border-white/20 dark:border-slate-600/50 bg-white/50 dark:bg-slate-900/50 backdrop-blur-lg text-black dark:text-white rounded-xl px-4 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all min-h-[150px] resize-none"
+                            id="message"
+                            placeholder="Votre message..."
+                            name="message"
+                          ></textarea>
+                          <ValidationError
+                            prefix="Message"
+                            field="message"
+                            errors={state.errors}
+                          />
+                        </div>
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                          type="submit"
+                          disabled={state.submitting}
+                        >
+                          {state.submitting
+                            ? "Envoi en cours..."
+                            : "Envoyer le message"}
+                        </motion.button>
+                      </motion.form>
+                    )}
+                  </AnimatePresence>
                 </GlassCard>
               </AnimatedSection>
             </div>

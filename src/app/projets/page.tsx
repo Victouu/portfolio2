@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import Head from "../components/head";
 import {
   AnimatedSection,
@@ -46,6 +45,18 @@ const projets = [
     highlight: false,
   },
   {
+    title: "MyBAD",
+    company: "Projet Universitaire",
+    type: "SAÉ",
+    date: "2026",
+    description:
+      "Application full-stack de gestion de scores et de classements pour des cours de badminton. Suivi des performances des joueurs et calcul automatisé des classements, développée en équipe.",
+    tags: ["Laravel", "Vue.js", "PHP", "TypeScript", "Docker"],
+    competences: ["C1", "C4", "C5", "C6"],
+    github: "https://github.com/MyBAD-SAE/MyBAD",
+    highlight: false,
+  },
+  {
     title: "Countries",
     company: "Projet Universitaire",
     type: "SAÉ",
@@ -71,18 +82,11 @@ const projets = [
 ];
 
 function Projets() {
-  const { theme, resolvedTheme } = useTheme();
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-  useEffect(() => {
-    setIsDarkTheme(resolvedTheme === "dark");
-  }, [resolvedTheme]);
-
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center">
+    <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
       <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-7xl">
         <Head />
-        <div className="mb-20 flex w-full flex-col space-y-8 pt-5">
+        <div className="mb-10 flex w-full flex-col space-y-6 pt-5 md:space-y-8">
           {/* Titre de la page */}
           <AnimatedSection delay={0.1}>
             <h2 className="w-full text-xs font-extralight uppercase tracking-widest md:text-xl text-tuscan text-left">
@@ -104,7 +108,7 @@ function Projets() {
           {/* Section Projets Professionnels */}
           <div className="space-y-6">
             <AnimatedSection delay={0.3}>
-              <h3 className="text-2xl font-bold flex items-center gap-3">
+              <h3 className="text-xl md:text-2xl font-bold flex items-center gap-3">
                 <motion.span
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/50 dark:to-orange-800/50 rounded-lg shadow-lg"
@@ -188,7 +192,7 @@ function Projets() {
           {/* Section Autres Projets */}
           <div className="space-y-6 pt-8">
             <AnimatedSection delay={0.5}>
-              <h3 className="text-2xl font-bold flex items-center gap-3">
+              <h3 className="text-xl md:text-2xl font-bold flex items-center gap-3">
                 <motion.span
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-lg shadow-lg"
@@ -313,7 +317,7 @@ function Projets() {
                   pour débuter ma carrière professionnelle.
                 </p>
                 <HoverCard>
-                  <a
+                  <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
                   >
@@ -331,7 +335,7 @@ function Projets() {
                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </HoverCard>
               </div>
             </GlassCard>
