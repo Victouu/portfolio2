@@ -51,6 +51,8 @@ export default function Head() {
             title="logo Victor Roué"
             width={100}
             height={100}
+            priority
+            fetchPriority="high"
           />
         </MotionLink>
 

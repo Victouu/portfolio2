@@ -45,30 +45,28 @@ export default function Home() {
         <Head />
         <div className="flex w-full flex-1 items-center justify-center py-8 lg:py-0">
           <div className="flex w-full flex-col items-center space-y-6 md:space-y-10 lg:space-y-12 z-10">
-            {/* Photo de profil avec animation */}
-            <AnimatedSection delay={0.2}>
-              <div ref={profileRef} className="relative">
-                <div
-                  ref={glowRef}
-                  className="absolute inset-0 bg-gradient-to-r from-orange-400 to-blue-500 rounded-full blur-xl opacity-30"
-                ></div>
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Image
-                    src="/profile.jpg"
-                    alt="Victor Roué - DevOps Developer"
-                    width={250}
-                    height={250}
-                    priority
-                    className="relative rounded-full h-44 w-44 md:w-56 md:h-56 object-cover border-4 border-white/80 dark:border-slate-800/80 shadow-2xl backdrop-blur-sm"
-                  />
-                </motion.div>
-              </div>
-            </AnimatedSection>
+            {/* Photo de profil — rendue immédiatement pour la LCP */}
+            <div ref={profileRef} className="relative">
+              <div
+                ref={glowRef}
+                className="absolute inset-0 bg-gradient-to-r from-orange-400 to-blue-500 rounded-full blur-xl opacity-30"
+              ></div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Image
+                  src="/profile.jpg"
+                  alt="Victor Roué - Développeur DevOps, alternant chez Orange à Lannion"
+                  width={250}
+                  height={250}
+                  priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 176px, 224px"
+                  className="relative rounded-full h-44 w-44 md:w-56 md:h-56 object-cover border-4 border-white/80 dark:border-slate-800/80 shadow-2xl backdrop-blur-sm"
+                />
+              </motion.div>
+            </div>
 
             {/* Titre principal */}
             <AnimatedSection delay={0.4} className="text-center space-y-4">
