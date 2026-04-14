@@ -14,7 +14,11 @@ function Contact() {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
-      <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-7xl">
+      <h1 className="sr-only">
+        Contacter Victor Roué — Disponible pour un poste DevOps Junior ou
+        Intégrateur Système en Septembre 2026
+      </h1>
+      <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-4xl lg:max-w-7xl">
         <Head />
         <div className="mb-10 flex w-full flex-col space-y-6 pt-5 md:space-y-8">
           {/* Titre */}

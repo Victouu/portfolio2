@@ -86,7 +86,11 @@ const competencesBUT = [
 function About() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
-      <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-7xl">
+      <h1 className="sr-only">
+        À propos de Victor Roué — Étudiant en BUT Informatique, alternant DevOps
+        chez Orange
+      </h1>
+      <div className="flex min-h-screen w-[90%] max-w-[90%] flex-col md:max-w-4xl lg:max-w-7xl">
         <Head />
         <div className="flex items-center pt-5">
           <div className="mb-10 flex w-full flex-col items-center space-y-6 text-sm md:space-y-11 md:pb-0 md:text-lg">

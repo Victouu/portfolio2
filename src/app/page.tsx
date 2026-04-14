@@ -37,10 +37,14 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden">
-      <div className="flex min-h-[calc(100svh-7rem)] w-[90%] max-w-[90%] flex-col md:min-h-screen md:max-w-7xl">
+      <h1 className="sr-only">
+        Victor Roué — Développeur DevOps & Étudiant en 3ème année de BUT
+        Informatique, alternant chez Orange à Lannion
+      </h1>
+      <div className="flex min-h-[calc(100svh-7rem)] w-[90%] max-w-[90%] flex-col md:max-w-4xl lg:min-h-screen lg:max-w-7xl">
         <Head />
-        <div className="flex w-full flex-1 items-center justify-center py-8 md:py-0">
-          <div className="flex w-full flex-col items-center space-y-6 md:space-y-12 z-10">
+        <div className="flex w-full flex-1 items-center justify-center py-8 lg:py-0">
+          <div className="flex w-full flex-col items-center space-y-6 md:space-y-10 lg:space-y-12 z-10">
             {/* Photo de profil avec animation */}
             <AnimatedSection delay={0.2}>
               <div ref={profileRef} className="relative">

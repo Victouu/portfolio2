@@ -3,7 +3,7 @@ import { HoverBorderGradient } from "../components/bouton-rgb";
 
 export function Cv() {
   return (
-    <div className="hidden fixed md:flex flex-col items-center justify-center bottom-1 right-10 bg-transparent z-20 mb-4">
+    <div className="hidden fixed lg:flex flex-col items-center justify-center bottom-1 right-10 bg-transparent z-20 mb-4">
       <a href="CV.pdf">
         <HoverBorderGradient
           containerClassName="rounded-full"
