@@ -27,13 +27,13 @@ export const Reseaux = () => {
       <a
         href="https://github.com/Victouu"
         target="_blank"
-       
+        rel="noopener noreferrer"
+        aria-label="GitHub — Victor Roué"
       >
         <Image
           src={isDarkTheme ? githubWhite : githubBlack}
-          alt="github logo"
-          title="github logo"
-
+          alt=""
+          aria-hidden="true"
           width={20}
           height={20}
         />
@@ -44,12 +44,13 @@ export const Reseaux = () => {
       <a
         href="https://www.linkedin.com/in/victor-roue-0081222a6/"
         target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn — Victor Roué"
       >
         <Image
           src={isDarkTheme ? linkedinWhite : linkedinBlack}
-          alt="linkedin"
-          title="linkedin"
-
+          alt=""
+          aria-hidden="true"
           width={20}
           height={20}
         />

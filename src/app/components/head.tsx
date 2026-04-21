@@ -51,6 +51,7 @@ export default function Head() {
             title="logo Victor Roué"
             width={100}
             height={100}
+            sizes="(max-width: 640px) 60px, (max-width: 1024px) 70px, 100px"
             priority
             fetchPriority="high"
           />

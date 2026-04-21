@@ -92,8 +92,9 @@ export const CustomCursor = () => {
       {/* Cacher le curseur natif */}
       <style jsx global>{`
         @media (pointer: fine) {
-          * {
-            cursor: none !important;
+          html,
+          body {
+            cursor: none;
           }
         }
       `}</style>

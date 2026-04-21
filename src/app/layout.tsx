@@ -88,7 +88,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/profile.jpg",
   },
   category: "technology",
   verification: {
