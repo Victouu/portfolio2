@@ -6,7 +6,7 @@ import { Provider } from "./providers";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnimatedBackground } from "./components/animated-background";
-import { CustomCursor } from "./components/custom-cursor";
+import { CustomCursorLazy } from "./components/custom-cursor-lazy";
 import { SmoothScroll } from "./components/smooth-scroll";
 
 const space_Grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -221,7 +221,7 @@ export default function RootLayout({
         />
         <Provider attribute="class" defaultTheme="light">
           <SmoothScroll>
-            <CustomCursor />
+            <CustomCursorLazy />
             <AnimatedBackground />
             <main className="relative z-10 pb-28 lg:pb-0">
               {children}

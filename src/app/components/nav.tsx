@@ -85,21 +85,27 @@ export const Nav = () => {
                     href={item.href}
                     className="group relative flex flex-col items-center justify-center px-3 py-1 lg:flex-row lg:px-5 lg:py-2 lg:rounded-full"
                   >
-                    {/* Active indicator — desktop pill */}
                     {isActive && (
                       <motion.div
                         layoutId="nav-active-desktop"
                         className="absolute inset-0 hidden lg:block rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/30"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
 
-                    {/* Active indicator — mobile bar under icon */}
                     {isActive && (
                       <motion.span
                         layoutId="nav-active-mobile"
                         className="pointer-events-none absolute -top-1 inset-x-0 mx-auto h-1 w-8 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-md shadow-orange-500/40 lg:hidden"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
 
